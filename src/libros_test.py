@@ -59,11 +59,30 @@ def test_crea_diccionario_mas_barato_por_mes(datos):
     print("="*20)
     print()
 
+def mostrar_diccionario_listas_comprimido(diccionario):
+    print(f"{'clave':<{30}} valor")
+    print(f"{'(mes)':<{30}} (List[Libro])")
+    print("="*100)
+    for clave, valor in diccionario.items():
+        print(f"{clave:<{30}} {str_lista_comprimida(valor)}")
+        print("-"*100)
+
+def str_lista_comprimida(lista):
+    res = "["
+    for elemento in lista:
+        res += f"Libro(titulo='{elemento.titulo}', fecha_publicacion={elemento.fecha_publicacion}, precio={elemento.precio},...),\n"+" "*31
+    return res[:-33] + "]"
+
+def test_agrupa_libros_por_mes(datos):
+    print("Test de agrupa_libros_por_mes")
+    mostrar_diccionario_listas_comprimido(libros.agrupa_libros_por_mes(datos))
+
 if __name__ == "__main__":
     datos = test_lee_libros()
     #test_libro_mas_reciente(datos)
     #test_libro_titulo_mas_corto(datos)
     #test_libros_mas_caros(datos)
     #test_ordena_libros_por_año_y_autor(datos)
-    test_crea_diccionario_iniciales(datos)
+    #test_crea_diccionario_iniciales(datos)
+    #test_agrupa_libros_por_mes(datos)
     #test_crea_diccionario_mas_barato_por_mes(datos)

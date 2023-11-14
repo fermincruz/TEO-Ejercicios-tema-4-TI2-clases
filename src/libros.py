@@ -61,3 +61,6 @@ def crea_diccionario_iniciales(libros):
 
 def crea_diccionario_mas_barato_por_mes(libros):
     pass
+
+def agrupa_libros_por_mes(libros):
+    pass
