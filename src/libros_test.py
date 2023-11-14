@@ -10,7 +10,7 @@ def test_lee_libros():
 
 def test_libro_mas_reciente(datos):
     print("Test de libro_mas_reciente")
-    print("\nLibro más reciente de Gabriel García Márquez:", libros.libro_mas_reciente(libros, "Gabriel García Márquez"))
+    print("\nLibro más reciente de Gabriel García Márquez:", libros.libro_mas_reciente(datos, "Gabriel García Márquez"))
     print("="*20)
     print()
 
@@ -65,5 +65,5 @@ if __name__ == "__main__":
     #test_libro_titulo_mas_corto(datos)
     #test_libros_mas_caros(datos)
     #test_ordena_libros_por_año_y_autor(datos)
-    #test_crea_diccionario_iniciales(datos)
+    test_crea_diccionario_iniciales(datos)
     #test_crea_diccionario_mas_barato_por_mes(datos)

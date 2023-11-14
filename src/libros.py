@@ -1,4 +1,4 @@
-from collections import namedtuple
+from collections import namedtuple, defaultdict
 import csv
 from datetime import datetime
 
@@ -21,19 +21,43 @@ def lee_libros(ruta_csv):
 
 # TODO: Implemente las funciones solicitadas en el enunciado
 def libro_mas_reciente(libros, autor):
-    pass
+    filtrado = [libro for libro in libros if libro.autor == autor]
+    '''
+    O también:
+    filtrado = []
+    for libro in libros:
+        if libro.autor == autor:
+        filtrado.append(libro)
+    '''
+    if len(filtrado) == 0:
+        return None
+    
+    return max(filtrado, key = lambda libro:libro.fecha_publicacion)
 
 def libro_titulo_mas_corto(libros, autor = None):
-    pass
+    filtrado = [libro for libro in libros if autor == None or libro.autor == autor]
+    if len(filtrado) == 0:
+        return None
+    
+    return min(filtrado, key = lambda libro:len(libro.titulo))
 
 def libros_mas_caros(libros, año=None):
-    pass
+    filtrado = [libro for libro in libros if año == None or libro.fecha_publicacion.year == año]
+    filtrado.sort(key=lambda libro:libro.precio, reverse=True)
+    return filtrado[:3]
 
 def ordena_libros_por_año_y_autor(libros):
-    pass
+    # La función lambda devuelve para cada libro una tupla formada por año y autor
+    # Así, al comparar estas tuplas la función sorted, primero ordenará por año,
+    # pero a igualdad de año, ordenará por autor.
+    return sorted(libros, key=lambda libro:(libro.fecha_publicacion.year, libro.autor))
 
 def crea_diccionario_iniciales(libros):
-   pass
+    res = defaultdict(list)    # o también:   res = dict()
+    for libro in libros:
+        clave = libro.autor[0]
+        res[clave].append(libro)  #Se supone que el valor asociado a la clave es una lista
+    return res
 
 def crea_diccionario_mas_barato_por_mes(libros):
     pass
