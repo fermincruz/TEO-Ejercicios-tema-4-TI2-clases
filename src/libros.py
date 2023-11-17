@@ -55,12 +55,24 @@ def ordena_libros_por_año_y_autor(libros):
 def crea_diccionario_iniciales(libros):
     res = defaultdict(list)    # o también:   res = dict()
     for libro in libros:
-        clave = libro.autor[0]
-        res[clave].append(libro)  #Se supone que el valor asociado a la clave es una lista
+        inicial_autor = libro.autor[0]
+        res[inicial_autor].append(libro)  #Se supone que el valor asociado a la clave es una lista
     return res
 
 def crea_diccionario_mas_barato_por_mes(libros):
-    pass
+    # Primer paso: agrupar los libros en listas según el mes de publicación
+    dic_libros_por_mes = agrupa_libros_por_mes(libros)
+
+    # Segundo paso: buscar el libro más barato para cada una de las listas anteriores
+    res = {}
+    for mes, libros_mes in dic_libros_por_mes.items():
+        mas_barato_mes = min(libros_mes, key = lambda libro:libro.precio)
+        res[mes] = mas_barato_mes
+    return res
 
 def agrupa_libros_por_mes(libros):
-    pass
+    res = defaultdict(list)
+    for libro in libros:
+        mes_publicacion = libro.fecha_publicacion.month
+        res[mes_publicacion].append(libro)
+    return res

@@ -84,5 +84,5 @@ if __name__ == "__main__":
     #test_libros_mas_caros(datos)
     #test_ordena_libros_por_año_y_autor(datos)
     #test_crea_diccionario_iniciales(datos)
-    #test_agrupa_libros_por_mes(datos)
-    #test_crea_diccionario_mas_barato_por_mes(datos)
+    # test_agrupa_libros_por_mes(datos)
+    test_crea_diccionario_mas_barato_por_mes(datos)
